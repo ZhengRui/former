@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Set Up VNC on CentOS</title>
+  <title>Debug Python code using Wingdb</title>
   <meta name="author" content="Zheng Rui">
 
   <link href="/rss.xml" type="application/rss+xml" rel="alternate"
@@ -11831,104 +11831,32 @@ jQuery(document).ready(function($) {
 <div>
   <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">Set Up VNC on CentOS</h1>
-      <p class="meta"><time datetime="2015-10-14T00:00:00+08:00" pubdate>Oct 14, 2015</time></p>
+      <h1 class="entry-title">Debug Python code using Wingdb</h1>
+      <p class="meta"><time datetime="2016-05-25T00:00:00+08:00" pubdate>May 25, 2016</time></p>
 </header>
 
-  <div class="entry-content"><h4>install tigervnc</h4>
-<div class="highlight"><pre><span></span>yum groupinstall Desktop
-yum install tigervnc-server
-</pre></div>
-
-
-<h4>modify /etc/sysconfig/vncservers file</h4>
-<div class="highlight"><pre><span></span>VNCSERVERS<span class="p">=</span><span class="s2">&quot;1:user1 2:user2&quot;</span>
-VNCSERVERARGS[<span class="m">1</span>]<span class="p">=</span><span class="s2">&quot;-geometry 1024x768 -localhost&quot;</span>
-VNCSERVERARGS[<span class="m">2</span>]<span class="p">=</span><span class="s2">&quot;-geometry 1920x1080 -localhost&quot;</span>
-</pre></div>
-
-
-<p><code>-localhost</code> option is to make vnc encrypted through an ssh tunnel</p>
-<h4>modify /etc/sysconfig/iptables file</h4>
-<p>add one line:</p>
-<div class="highlight"><pre><span></span><span class="p">-</span>A INPUT <span class="p">-</span><span class="k">m</span> state <span class="p">--</span>state NEW <span class="p">-</span><span class="k">m</span> tcp <span class="p">-</span><span class="k">p</span> tcp <span class="p">-</span><span class="k">m</span> multiport <span class="p">--</span>dports <span class="m">5901</span>:<span class="m">5903</span><span class="p">,</span><span class="m">6001</span>:<span class="m">6003</span> <span class="p">-</span><span class="k">j</span> ACCEPT
-</pre></div>
-
-
-<p>restart iptables:</p>
-<div class="highlight"><pre><span></span>service iptables restart
-</pre></div>
-
-
-<p>output:</p>
-<div class="highlight"><pre><span></span>iptables: Setting chains to policy ACCEPT: filter          <span class="o">[</span>  OK  <span class="o">]</span>
-iptables: Flushing firewall rules:                         <span class="o">[</span>  OK  <span class="o">]</span>
-iptables: Unloading modules:                               <span class="o">[</span>  OK  <span class="o">]</span>
-iptables: Applying firewall rules:                         <span class="o">[</span>  OK  <span class="o">]</span>
-</pre></div>
-
-
-<h4>set vnc passwd for each user</h4>
-<p>after ssh into my account</p>
-<div class="highlight"><pre><span></span>vncpasswd
-</pre></div>
-
-
-<p>i can set the password corresponding to my account</p>
-<h4>start vnc server</h4>
-<div class="highlight"><pre><span></span>service vncserver start
-</pre></div>
-
-
-<p>output:</p>
-<div class="highlight"><pre><span></span>Starting VNC server: 1:user1
-New <span class="s1">&#39;Lab:1 (user1)&#39;</span> desktop is Lab:1
-
-Starting applications specified in /home/user1/.vnc/xstartup
-Log file is /home/user1/.vnc/Lab:1.log
-
-2:user2 
-New <span class="s1">&#39;Lab:2 (user2)&#39;</span> desktop is Lab:2
-
-Starting applications specified in /home/user2/.vnc/xstartup
-Log file is /home/user2/.vnc/Lab:2.log
-
-                                                           <span class="o">[</span>  OK  <span class="o">]</span>
-</pre></div>
-
-
-<p>try <code>restart</code> or <code>stop</code> also to make it work</p>
-<p>if met problems like this:</p>
-<div class="highlight"><pre><span></span>Starting VNC server: 1:user1 A VNC server is already running as :1
-                                                           <span class="o">[</span>FAILED<span class="o">]</span>
-</pre></div>
-
-
-<p>it means there are already some process occupy the port <code>6001</code>, using <code>ps ef | grep vnc</code> does not give me anything, because this port is actually occupied by <code>Xvfb</code>, using <code>lsof -i tcp:6001</code> will give the <code>pid</code> of the process which occupy the port, after killing that process, vnc server will be able to start normally.</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>user1@Lab .vnc<span class="o">]</span>$ ls
-passwd  Lab:1.log  Lab:1.pid  xstartup
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="o">[</span>user2@Lab .vnc<span class="o">]</span>$ ls
-passwd  Lab:2.log  Lab:2.pid  xstartup
-</pre></div>
-
-
-<h4>usage</h4>
-<p>after <code>ssh</code> into the server, run <code>vncviewer localhost:1</code> using corresponding vnc password will show the desktop, can also try <code>vncviewer localhost:2</code> using vnc password set by others.</p>
-<p>Try openning a firefox, close vncviewer, then connect again, firefox is still there.</p>
-<h4>reference</h4>
-<p><a href="https://rbgeek.wordpress.com/2012/06/26/how-to-install-vnc-server-on-centos-6/">1. How to install VNC server on CentOS 6</a></p>
-<p><a href="https://wiki.centos.org/HowTos/VNC-Server">2. VNC CentOS Wiki</a></p>
-<p><a href="http://monsterjam.org/blog/20071228103211">3. A VNC server is already running as :10</a></p></div>
+  <div class="entry-content"><p>This tip is about using <a href="https://wingware.com/">wingide</a> 's debugger to debug your python code. Sometimes the python code can run from terminal but not from wingide ui, it mostly is because the python related environmental variable settings are different when python kernel is start from terminal and from wingide. In this case, you want to start your programe from terminal so it can run properly and still want to be able to debug your code like setting breakpoints, checking stack data. Wingide provide a <a href="http://wingware.com/psupport/wingide-1.1/node7.html#debugexternal">simple way</a> to achieve this. Basically:</p>
+<ol>
+<li>
+<p>Copy wingdbstub.py from the Wing IDE installation directory into the same directory as your debug program.</p>
+</li>
+<li>
+<p>At the point where you want debugging to begin, insert following code</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">wingdbstub</span>
+<span class="k">if</span> <span class="s1">&#39;WINGDB_ACTIVE&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;Success starting debug&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s2">&quot;Failed to start debug... Continuing without debug&quot;</span>
+</pre></div></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
     Posted by <span class="fn">Zheng Rui</span>
   </span>
-<time datetime="2015-10-14T00:00:00+08:00" pubdate>Oct 14, 2015</time>  <span class="categories">
-    <a class="category" href="./tag/linux.html">Linux</a>  </span>
+<time datetime="2016-05-25T00:00:00+08:00" pubdate>May 25, 2016</time>  <span class="categories">
+    <a class="category" href="./tag/tips.html">Tips</a> |     <a class="category" href="./tag/python.html">Python</a>  </span>
 </p><div class="sharing">
 </div>    </footer>
   </article>
@@ -11989,9 +11917,9 @@ passwd  Lab:2.log  Lab:2.pid  xstartup
 </p></footer>
 	<script type="text/javascript">
 	  var disqus_shortname = 'zerryland';
-          var disqus_identifier = '/vnc-centos.html';
-          var disqus_url = 'http://zhengrui.github.io/vnc-centos.html';
-          var disqus_title = 'Set Up VNC on CentOS';
+          var disqus_identifier = '/wingdb-usage.html';
+          var disqus_url = 'http://zhengrui.github.io/wingdb-usage.html';
+          var disqus_title = 'Debug Python code using Wingdb';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';

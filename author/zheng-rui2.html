@@ -11832,6 +11832,32 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="../multiple-python-with-pyenv.html">Configuration of Multiple Python Versions Using Pyenv</a>
+      </h1>
+      <p class="meta"><time datetime="2014-09-19T00:00:00+08:00" pubdate>Sep 19, 2014</time></p>
+</header>
+
+  <div class="entry-content"><h4>Installation of <a href="https://github.com/yyuu/pyenv">Pyenv</a>:</h4>
+<div class="highlight"><pre><span></span>$ git clone https://github.com/yyuu/pyenv.git ~/.pyenv
+</pre></div>
+
+
+<p>Add this to .bashrc file</p>
+<div class="highlight"><pre><span></span><span class="c1">#Add for pyenv</span>
+<span class="nb">export</span> <span class="nv">PYENV_ROOT</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.pyenv&quot;</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$PYENV_ROOT</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+<span class="nb">eval</span> <span class="s2">&quot;</span><span class="k">$(</span>pyenv init -<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<p>To check the available python version for installation, run <code>pyenv install -l</code>. I stalled python3.3.2 using ...</p></div>
+  <footer>
+    <a rel="full-article" href="../multiple-python-with-pyenv.html">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="../singleviewmetrology.html">Single View Metrology</a>
       </h1>
       <p class="meta"><time datetime="2014-05-26T00:00:00+08:00" pubdate>May 26, 2014</time></p>
@@ -11898,13 +11924,13 @@ jQuery(document).ready(function($) {
           <a href="../update-matplotlib-plot.html">Update Matplotlib Plot</a>
       </li>
       <li class="post">
+          <a href="../wingdb-usage.html">Debug Python code using Wingdb</a>
+      </li>
+      <li class="post">
           <a href="../vnc-osx-yosemite.html">OSX Yosemite as VNC server</a>
       </li>
       <li class="post">
           <a href="../log-dl-ubuntu14.04.html">Log of Setting Up Deep Learning Environment in Ubuntu14.04</a>
-      </li>
-      <li class="post">
-          <a href="../vnc-centos.html">Set Up VNC on CentOS</a>
       </li>
     </ul>
   </section>
