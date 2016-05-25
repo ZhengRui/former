@@ -168,7 +168,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;p&gt;Gist &lt;a href="https://gist.github.com/ZhengRui/8404edd3bf94784f881f83173b038463"&gt;updateMatplotlibPlot.py&lt;/a&gt;&lt;/p&gt;</summary><category term="Tips"></category></entry><entry><title>OSX Yosemite as VNC server</title><link href="/vnc-osx-yosemite.html" rel="alternate"></link><published>2016-02-18T00:00:00+08:00</published><author><name>Zheng Rui</name></author><id>tag:,2016-02-18:vnc-osx-yosemite.html</id><summary type="html">&lt;p&gt;OS: OSX 10.10 Yosemite&lt;/p&gt;
+&lt;p&gt;Gist &lt;a href="https://gist.github.com/ZhengRui/8404edd3bf94784f881f83173b038463"&gt;updateMatplotlibPlot.py&lt;/a&gt;&lt;/p&gt;</summary><category term="Python"></category><category term="Tips"></category></entry><entry><title>OSX Yosemite as VNC server</title><link href="/vnc-osx-yosemite.html" rel="alternate"></link><published>2016-02-18T00:00:00+08:00</published><author><name>Zheng Rui</name></author><id>tag:,2016-02-18:vnc-osx-yosemite.html</id><summary type="html">&lt;p&gt;OS: OSX 10.10 Yosemite&lt;/p&gt;
 &lt;h2&gt;enable screen sharing&lt;/h2&gt;
 &lt;p&gt;&lt;img width="600" src="images/vncOnMac/vncOnMac-1.png"&gt;&lt;/p&gt;
 &lt;ul&gt;
