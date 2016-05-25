@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Keep Sharp - Machine Learning</title>
+  <title>Update Matplotlib Plot</title>
   <meta name="author" content="Zheng Rui">
 
   <link href="/rss.xml" type="application/rss+xml" rel="alternate"
@@ -11793,12 +11793,12 @@ jQuery(document).ready(function($) {
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="../favicon.png" rel="icon">
-  <link href="../theme/css/main.css" media="screen, projection"
+  <link href="./favicon.png" rel="icon">
+  <link href="./theme/css/main.css" media="screen, projection"
         rel="stylesheet" type="text/css">
-  <script src="../theme/js/modernizr-2.0.js"></script>
-  <script src="../theme/js/ender.js"></script>
-  <script src="../theme/js/octopress.js" type="text/javascript"></script>
+  <script src="./theme/js/modernizr-2.0.js"></script>
+  <script src="./theme/js/ender.js"></script>
+  <script src="./theme/js/octopress.js" type="text/javascript"></script>
 
   <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic"
         rel="stylesheet" type="text/css">
@@ -11808,7 +11808,7 @@ jQuery(document).ready(function($) {
 
 <body>
   <header role="banner"><hgroup>
-  <h1><a href="../">Keep Sharp</a></h1>
+  <h1><a href="./">Keep Sharp</a></h1>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="/rss.xml" rel="subscribe-rss">RSS</a></li>
@@ -11817,7 +11817,7 @@ jQuery(document).ready(function($) {
 
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:.." />
+    <input type="hidden" name="q" value="site:." />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -11828,43 +11828,217 @@ jQuery(document).ready(function($) {
 </ul></nav>
   <div id="main">
     <div id="content">
-<div class="blog-index">
-  		<article>
+<div>
+  <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">
-        <a href="../ML-CV-Resource.html">Machine Learning and Computer Vision Resources</a>
-      </h1>
-      <p class="meta"><time datetime="2015-02-10T00:00:00+08:00" pubdate>Feb 10, 2015</time></p>
+      <h1 class="entry-title">Update Matplotlib Plot</h1>
+      <p class="meta"><time datetime="2016-05-25T00:00:00+08:00" pubdate>May 25, 2016</time></p>
 </header>
 
-  <div class="entry-content"><h2>Machine Learning</h2>
+  <div class="entry-content"><p>This tip is about how to update matplotlib plot, it is based on this great tutorial: <a href="http://bastibe.de/2013-05-30-speeding-up-matplotlib.html">Speeding up Matplotlib</a></p>
+<p>I learned two ways of updating matplotlib plot, both require first manually change the content of objects that to be updated. For example, <code>lineObj.set_ydata()</code> for line object, <code>vlinesObj.set_paths()</code> for vlines object. After that, you can do either of the following two things to update the plot:</p>
 <ul>
-<li>EBooks<ul>
-<li><a href="https://drive.google.com/open?id=0B3aawkjLrbgMWmNkN09xdkRodG8&amp;authuser=0">My Colletion</a></li>
-<li><a href="http://en.bookfi.org/">bookfi</a> for free ebooks</li>
-</ul>
+<li>
+<p>simpler but slower: use <code>canvas.draw()</code> to redraw every objects inside the canvas.</p>
 </li>
-<li>Tutorials &amp;&amp; Courses<ul>
-<li>General Machine Learning<ul>
-<li><a href="https://www.youtube.com/playlist?list=PLD0F06AA0D2E8FFBA">Machine Learning</a></li>
-<li>Coursera by <a href="https://www.coursera.org/course/ml">Andrew Ng</a>, by Hsuan-Tian Lin <a href="https://www.coursera.org/course/ntumlone">fundation</a> and <a href="https://www.coursera.org/course/ntumltwo">techniques</a></li>
-<li>Machine Learning @ CMU by Alex Smola <a href="https://www.youtube.com/playlist?list=PLZSO_6-bSqHQmMKwWVvYwKreGu4b4kMU9">2013</a> <a href="https://www.youtube.com/playlist?list=PLZSO_6-bSqHTTV7w9u7grTXBHMH-mw3qn">2015</a></li>
-<li><a href="http://www.csc.kth.se/utbildning/kth/kurser/DD3364/Schedule.php">Elements of Statistical Learning @ KTH</a></li>
-<li><a href="http://www.cse.ust.hk/~dyyeung/hkust_only/comp621i/">Advanced Topics in ML 2004</a>, <a href="http://www.cse.ust.hk/~dyyeung/hkust_only/comp621l/">Kernel and Embedding Methods in ML ...</a></li></ul></li></ul></li></ul></div>
-  <footer>
-    <a rel="full-article" href="../ML-CV-Resource.html">Read On &crarr;</a>
-  </footer>
-  		</article>
-<div class="pagination">
+<li>
+<p>faster but require more knowledge of how things work underhood: since <code>canvas.draw()</code> may do some repetitive work of redrawing some objects like axis, legends which may don't need to be updated, there should be many ways to lower the amount of work in this updation step if you are a master of matplotlib. The way i learned is first restore canvas from a prestored background using <code>canvas.restore_region()</code>, and then only update the objects i want to update using <code>ax.draw_artist(obj)</code> rather than a whole canvas, and at last use <code>canvas.update()</code> to update the canvas.</p>
+</li>
+</ul>
+<p>Test:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#! /usr/bin/env python</span>
 
-  <br />
-</div></div>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="k">def</span> <span class="nf">newfig</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="c1">#obj, = ax.plot(np.random.rand(l))  # normal line plot</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">l</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">400.</span><span class="o">/</span><span class="n">l</span><span class="p">)</span>   <span class="c1"># vlines return line collection</span>
+
+    <span class="n">obj</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span> <span class="c1"># if using restore from bg method, bg should not contain lines; comment this line if use canvas.draw() method</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">copy_from_bbox</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">bbox</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">bg</span>
+
+
+<span class="k">class</span> <span class="nc">LiveFig</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bg</span> <span class="o">=</span> <span class="n">newfig</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">):</span>
+        <span class="c1">## update data</span>
+        <span class="c1">#self.obj.set_ydata(h)  # for normal line plot</span>
+
+        <span class="n">segs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1"># for vlines</span>
+        <span class="n">segs</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">))[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">segs</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">set_paths</span><span class="p">(</span><span class="n">segs</span><span class="p">)</span>
+
+        <span class="c1">############################################################</span>
+        <span class="c1">## way1: update canvas by default, if use this then should not do obj.remove() above</span>
+
+        <span class="c1">#  self.fig.canvas.draw()</span>
+        <span class="c1">############################################################</span>
+
+        <span class="c1">############################################################</span>
+        <span class="c1">## way2: update canvas partially, faster but fig cannot be resized, if use this</span>
+        <span class="c1">## then should do obj.remove() above before saving background</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">restore_region</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax</span><span class="o">.</span><span class="n">draw_artist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+        <span class="c1">############################################################</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">flush_events</span><span class="p">()</span>  <span class="c1"># entering Qt event loop, both methods require this</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">l1</span> <span class="o">=</span> <span class="mi">300</span>
+    <span class="n">fig1</span> <span class="o">=</span> <span class="n">LiveFig</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+
+    <span class="n">l2</span> <span class="o">=</span> <span class="mi">400</span>
+    <span class="n">fig2</span> <span class="o">=</span> <span class="n">LiveFig</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+
+    <span class="n">tstart</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">numfrm</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">tdelta</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">tstart</span> <span class="o">&lt;</span> <span class="n">tdelta</span><span class="p">:</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+        <span class="n">fig1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">h1</span><span class="p">)</span>
+
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">l2</span><span class="p">)</span>
+        <span class="n">fig2</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">h2</span><span class="p">)</span>
+
+        <span class="n">numfrm</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">print</span> <span class="s2">&quot;fps: &quot;</span><span class="p">,</span> <span class="n">numfrm</span> <span class="o">/</span> <span class="n">tdelta</span>
+    <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Press any key to exit.&quot;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Gist <a href="https://gist.github.com/ZhengRui/8404edd3bf94784f881f83173b038463">updateMatplotlibPlot.py</a></p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Zheng Rui</span>
+  </span>
+<time datetime="2016-05-25T00:00:00+08:00" pubdate>May 25, 2016</time>  <span class="categories">
+    <a class="category" href="./tag/tips.html">Tips</a>  </span>
+</p><div class="sharing">
+</div>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
 <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
-          <a href="../ML-CV-Resource.html">Machine Learning and Computer Vision Resources</a>
+          <a href="./update-matplotlib-plot.html">Update Matplotlib Plot</a>
+      </li>
+      <li class="post">
+          <a href="./vnc-osx-yosemite.html">OSX Yosemite as VNC server</a>
+      </li>
+      <li class="post">
+          <a href="./log-dl-ubuntu14.04.html">Log of Setting Up Deep Learning Environment in Ubuntu14.04</a>
+      </li>
+      <li class="post">
+          <a href="./vnc-centos.html">Set Up VNC on CentOS</a>
+      </li>
+      <li class="post">
+          <a href="./bloody-lessons.html">Collection of Bloody Lessons</a>
       </li>
     </ul>
   </section>
@@ -11872,15 +12046,15 @@ jQuery(document).ready(function($) {
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-        <li><a href="../category/pages.html">Pages</a></li>
-        <li><a href="../category/posts.html">Posts</a></li>
+        <li><a href="./category/pages.html">Pages</a></li>
+        <li><a href="./category/posts.html">Posts</a></li>
     </ul>
   </section>
  
 
   <section>
   <h1>Tags</h1>
-    <a href="../tag/funny.html">Funny</a>,    <a href="../tag/computer-vision.html">Computer Vision</a>,    <a href="../tag/project.html">Project</a>,    <a href="../tag/python.html">Python</a>,    <a href="../tag/deep-learning.html">Deep Learning</a>,    <a href="../tag/machine-learning.html">Machine Learning</a>,    <a href="../tag/linux.html">Linux</a>,    <a href="../tag/tips.html">Tips</a>  </section>
+    <a href="./tag/funny.html">Funny</a>,    <a href="./tag/computer-vision.html">Computer Vision</a>,    <a href="./tag/project.html">Project</a>,    <a href="./tag/python.html">Python</a>,    <a href="./tag/deep-learning.html">Deep Learning</a>,    <a href="./tag/machine-learning.html">Machine Learning</a>,    <a href="./tag/linux.html">Linux</a>,    <a href="./tag/tips.html">Tips</a>  </section>
 
 
     <section>
@@ -11898,6 +12072,9 @@ jQuery(document).ready(function($) {
 </p></footer>
 	<script type="text/javascript">
 	  var disqus_shortname = 'zerryland';
+          var disqus_identifier = '/update-matplotlib-plot.html';
+          var disqus_url = 'http://zhengrui.github.io/update-matplotlib-plot.html';
+          var disqus_title = 'Update Matplotlib Plot';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
