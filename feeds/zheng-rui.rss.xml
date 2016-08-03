@@ -790,7 +790,7 @@ cp dircolors-solarized/dircolors.ansi-universe ~/.dircolors
 
 &lt;p&gt;can change color schemes depending on personal flavor, need to copy related codes from &lt;code&gt;.bashrc&lt;/code&gt; to &lt;code&gt;.zshrc&lt;/code&gt; if using &lt;code&gt;oh-my-zsh&lt;/code&gt;.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;.vimrc&lt;/code&gt;:&lt;/li&gt;
+&lt;li&gt;basic &lt;code&gt;.vimrc&lt;/code&gt; configuration:&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;quot; add for vundle
 set nocompatible
@@ -865,6 +865,7 @@ let g:tex_conceal = &amp;quot;&amp;quot;
 &lt;/pre&gt;&lt;/div&gt;
 
 
+&lt;p&gt;for advanced vim / neovim configuration, check my &lt;a href="shortkeys.html"&gt;dotfiles&lt;/a&gt;.&lt;/p&gt;
 &lt;h2&gt;ssh and login using key&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;need to install ssh server (by default it is not included)&lt;/li&gt;
@@ -2372,4 +2373,11 @@ Pixel node graph:&lt;/p&gt;
         "}";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zheng Rui</dc:creator><pubDate>Wed, 26 Mar 2014 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:,2014-03-26:iscissor.html</guid><category>Computer Vision</category><category>Project</category></item><item><title>About me</title><link>/about-me.html</link><description>&lt;h3&gt;This is me&lt;/h3&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zheng Rui</dc:creator><pubDate>Sun, 11 Aug 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:,2013-08-11:about-me.html</guid></item></channel></rss>
+&lt;/script&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zheng Rui</dc:creator><pubDate>Wed, 26 Mar 2014 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:,2014-03-26:iscissor.html</guid><category>Computer Vision</category><category>Project</category></item><item><title>About me</title><link>/about-me.html</link><description>&lt;p&gt;My name is Rui Zheng.&lt;/p&gt;
+&lt;p&gt;I am a student and research assistant at &lt;a href="http://symlab.ust.hk/index.html"&gt;Symlab&lt;/a&gt; &lt;a href="http://www.ust.hk/"&gt;HKUST&lt;/a&gt;, where my research is focused on computer vision and deep learning, and I am graduating in coming months. Before that, I received PhD in &lt;a href="https://github.com/ZhengRui/physicsthings"&gt;physics&lt;/a&gt; from &lt;a href="http://english.iop.cas.cn/"&gt;Institute of Physics&lt;/a&gt; &lt;a href="http://english.cas.cn/"&gt;Chinese Academy of Sciences&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- Tons of people were curious and asked me why I studied computer science after making a PhD in physics, here is why: --&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;You may not know or sure what you want, but never slip towards what you don't want. Never give up, follow your heart.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Feel free to &lt;a href="mailto:rzhengphy@gmail.com"&gt;contact me&lt;/a&gt;, I enjoy knowing new people. I am currently looking for full time engineering / research position related to computer vision, deep learning or data analysis, drop me an email if you are interested.&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Zheng Rui</dc:creator><pubDate>Sun, 11 Aug 2013 00:00:00 +0800</pubDate><guid isPermaLink="false">tag:,2013-08-11:about-me.html</guid></item></channel></rss>

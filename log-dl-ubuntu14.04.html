@@ -1492,7 +1492,10 @@ blockquote {
 blockquote p:last-child,
 blockquote ul:last-child,
 blockquote ol:last-child {
-  margin-bottom: 0;
+  margin-bottom:0;
+  font-size:16.25px;
+  font-weight:300;
+  line-height:1.25;
 }
 blockquote footer,
 blockquote small,
@@ -11935,7 +11938,7 @@ cp dircolors-solarized/dircolors.ansi-universe ~/.dircolors
 
 <p>can change color schemes depending on personal flavor, need to copy related codes from <code>.bashrc</code> to <code>.zshrc</code> if using <code>oh-my-zsh</code>.</p>
 <ul>
-<li><code>.vimrc</code>:</li>
+<li>basic <code>.vimrc</code> configuration:</li>
 </ul>
 <div class="highlight"><pre><span></span>&quot; add for vundle
 set nocompatible
@@ -12010,6 +12013,7 @@ let g:tex_conceal = &quot;&quot;
 </pre></div>
 
 
+<p>for advanced vim / neovim configuration, check my <a href="shortkeys.html">dotfiles</a>.</p>
 <h2>ssh and login using key</h2>
 <ul>
 <li>need to install ssh server (by default it is not included)</li>
