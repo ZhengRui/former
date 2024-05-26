@@ -11839,8 +11839,8 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>This tip is about camera related coordinate system in android. When i develop camera related apps, inside <code>onPreviewFrame()</code> i need to do image processing on <code>byte[] data</code> and show results on top of the canvas and i use OpenCV for the image processing in jni. So the whole workflows is from <code>byte[]</code> in android camera to <code>cv::Mat()</code> in jni OpenCV and after image processing from <code>cv::Mat()</code> to android canvas and draw results.</p>
-<p><img width="600" src="/images/androidCoords/androidCoords.png"></p>
-<p>There are two things which affects the transformation, <code>camera index</code> and <code>phone orientation</code>, let's say using <code>front1back0</code> to denote <code>camera index</code>, and using <code>orientCase</code> to denote <code>phone orientation</code>, <code>orientCase</code> equals to 0,1,2,3 corresponds to <img width="50" src="/images/androidCoords/iphones0.png">, <img width="50" src="/images/androidCoords/iphones1.png">, <img width="50" src="/images/androidCoords/iphones2.png">, <img width="50" src="/images/androidCoords/iphones3.png">.</p>
+<p><img width="600" src="images/androidCoords/androidCoords.png"></p>
+<p>There are two things which affects the transformation, <code>camera index</code> and <code>phone orientation</code>, let's say using <code>front1back0</code> to denote <code>camera index</code>, and using <code>orientCase</code> to denote <code>phone orientation</code>, <code>orientCase</code> equals to 0,1,2,3 corresponds to <img width="50" src="images/androidCoords/iphones0.png">, <img width="50" src="images/androidCoords/iphones1.png">, <img width="50" src="images/androidCoords/iphones2.png">, <img width="50" src="images/androidCoords/iphones3.png">.</p>
 <p>Things to note:</p>
 <ul>
 <li>canvas coordinate system is always fixed</li>
