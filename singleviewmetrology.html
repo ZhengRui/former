@@ -12197,7 +12197,7 @@ Vanishing point position: (379.211, 3496.5)
 </ol>
 <p>Start from a point in <span class="math">\(Z=0\)</span> plane, default is co-plane method, then select points of interest on this plane, when you want to jump to another <span class="math">\(Z=z\)</span> plane, first "Alt+s" to switch the mode, then select the projected point on the new plane (with help of the thin white line), after selection of the first point on the new plane, the method will be automatically switched back to co-plane method. Repeat this process untill you select all the points of interest. Dont forget the usage of "Alt+d" and "Ctrl+LeftClick" when needed. Also you can press "=" to enlarge the gap on the white line, or press "-" to make it smaller.</p>
 <p><div class="videobox">
-            <video width="240" height="180" preload="none" controls poster="images/singleVM/ptpool.png"><source src='videos/singleVM/ptpool.ogv' type='video/ogg; codecs=theora, vorbis'></video></div></p>
+            <video width="240" height="180" preload="none" controls poster="images/singleVM/ptpool.png"><source src='videos/singleVM/ptpool.mp4' type='video/mp4; codecs=avc1.42E01E, mp4a.40.2'></video></div></p>
 <p>output:
 <pre>
 Please pick up all the points which will be used to form polygons later, start from one point in the reference plane. 
@@ -12232,7 +12232,7 @@ Scene Coordinates: (0.186364, 1.23369, -1.00038)
 <p>How to get the RGB value of a point inside the polygon or boundingbox, i will first rotate it from <span class="math">\(XY\)</span> plane to 3D scene position, then use projection matrix <span class="math">\(P\)</span> to find its scene pixel, then use <a href="https://en.wikipedia.org/wiki/Bilinear_interpolation">Bilinear Interpolation</a> method to get its RGB value.</p>
 <p>This video show we first use bounding box method to create a rectangle patch for 3 selected points, then "Alt+s" switch to polygon method and get a triangular patch from 3 points, next we show how to create a more complex polygon patch (when using polygon method, the points should be selected on clock-wise or counter clock-wise order). Also you can pick some points which are some tilted plane, it doesn't have to be horizontal or vertical plane.  </p>
 <p><div class="videobox">
-            <video width="240" height="180" preload="none" controls poster="images/singleVM/patch.png"><source src='videos/singleVM/patch.ogv' type='video/ogg; codecs=theora, vorbis'></video></div></p>
+            <video width="240" height="180" preload="none" controls poster="images/singleVM/patch.png"><source src='videos/singleVM/patch.mp4' type='video/mp4; codecs=avc1.42E01E, mp4a.40.2'></video></div></p>
 <p>output:</p>
 <pre>
 Please select at least 3 points for each plane and make patch by press "Alt + P" or click "Texture" in "Calculation" menu, you can change TextureMethod (BoundingBox method or Polygon method) with "Alt + S", default: BoundingBox method
