@@ -11839,11 +11839,11 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>This computer vision project is to realize the function of cutting out the objects you are interested inside a picture and then save it as another picture which has transparent background except the cut out objects. You can download the code from <a href="https://github.com/ZhengRui/Intelligent-Scissor">here</a>. Here is an example of Lena picken out from that "You know what i am talking about" iamge:</p>
-<p><img width="200" alt=""Lena Only"" title=""Lena Only"" src="/images/iScissor/lena_cut.png"></p>
+<p><img width="200" alt=""Lena Only"" title=""Lena Only"" src="images/iScissor/lena_cut.png"></p>
 <p>The idea is simple, just need to understand following concepts:</p>
 <h3>Pixel Node</h3>
 <p>one pixel becomes a 3by3 matrix with the original pixel in the center and other 8 additional pixel saves the link cost in that direction.</p>
-<p><img width="200" alt=""Pixel Node"" title=""Pixel Node"" src="/images/iScissor/pixelnode.jpg"></p>
+<p><img width="200" alt=""Pixel Node"" title=""Pixel Node"" src="images/iScissor/pixelnode.jpg"></p>
 <p>so the Pixnode picture will be 9 times larger as the original picture.</p>
 <h3>Cost Function</h3>
 <p>For vertical or horizental link:</p>
@@ -11871,36 +11871,36 @@ $$</div>
 <p>Because the link along the edge has the minimum link cost (<span class="math">\(C\)</span> not <span class="math">\(D\)</span>), so from a source point to a destination point, if we find its minimum cost path, it will try to follow the edges, this is the idea. Just use <strong>Dijkstra Algorithm</strong> with datastructure of <strong>Fibonacci Heap</strong> to find the minimum cost path. </p>
 <h3>Usage</h3>
 <p>After loading a picture, you can zoom in zoom out and drag by right click, it will be shown like this</p>
-<p><img width="600" alt=""IScissor"" title=""IScissor"" src="/images/iScissor/iscissor1.png"></p>
+<p><img width="600" alt=""IScissor"" title=""IScissor"" src="images/iScissor/iscissor1.png"></p>
 <ul>
 <li>1: show pixel node graph</li>
 <li>2: show cost graph</li>
 </ul>
 <p>Pixel node graph and cost graph are calculated when the picture is loaded. 
 Pixel node graph:</p>
-<p><img width="600" alt=""Pixel Node Graph"" title=""Pixel Node Graph"" src="/images/iScissor/iscissorpixelnode.png"></p>
+<p><img width="600" alt=""Pixel Node Graph"" title=""Pixel Node Graph"" src="images/iScissor/iscissorpixelnode.png"></p>
 <p>Cost Graph:</p>
-<p><img width="600" alt=""Cost Graph"" title=""Cost Graph"" src="/images/iScissor/iscissorcg.png"></p>
+<p><img width="600" alt=""Cost Graph"" title=""Cost Graph"" src="images/iScissor/iscissorcg.png"></p>
 <ul>
 <li>3: show path tree</li>
 <li>4: show minimum path from seed to cursor</li>
 <li>5: show animation of <strong>Dijkstra Algorithm</strong></li>
 </ul>
 <p>By clicking on the picture, you can put a seed there. Before the first click of the picture, clicking 3 4 5 will not response because there is no seed yet. When you click on the picture, the path tree is generated. Here is a path tree (Can you find the seed node?):</p>
-<p><img width="600" alt=""Path Tree"" title=""Path Tree"" src="/images/iScissor/iscissorpt.png"></p>
+<p><img width="600" alt=""Path Tree"" title=""Path Tree"" src="images/iScissor/iscissorpt.png"></p>
 <p>when you click again on the image, the seed is changed, you have to close the opencv windown and click 3 again to see the updated path tree.</p>
 <p>5 is a like a checkbox button, when it's on, everytime you click on the picture, it will show the animation of generating the path tree.</p>
 <p><div class="videobox">
-            <video width="240" height="180" preload="none" controls poster="/images/iScissor/iscissorpt.png"><source src='/videos/iScissor/dijkstra.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></div></p>
+            <video width="240" height="180" preload="none" controls poster="images/iScissor/iscissorpt.png"><source src='videos/iScissor/dijkstra.mp4' type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'></video></div></p>
 <p>The above animation can be shown in Chrome.</p>
 <p>After clicking 4 or press "F", you will enter the mode of scissoring the part you want. Put seed by clicking on the image, and move your mouse, you will see </p>
-<p><img width="600" src="/images/iScissor/iscissor2.png"></p>
+<p><img width="600" src="images/iScissor/iscissor2.png"></p>
 <p>the path will show both in QGraphicsView and opencv window. <strong>There are two lines, green line is minimum cost path from seed to the cursor, blue line is minimum cost path from seed to a pixel which is in a certain range of the cursor but has the minimum cost link within the range. You can choose cursor as next seed point by clicking or you can choose the blue ends as next seed point by "Ctrl"+click.</strong></p>
 <p><strong>You can pause scissoring mode by clicking 4 or press "F", then you can select the path segments and delete the selected segment by pressing "D".</strong></p>
 <p><strong><em>Note</em></strong>: <strong>Better delete with reverse order, from nearest to oldest segments, other wise when "save" in last step, it will have problem because the polygon is formed assumed that the segments is clock wise or counter clock wise sorted.</strong> Of course i could sort the segments before forming the polygon so that the segment can be deleted arbitrarily, but now i haven't implement the sort function.</p>
 <p>You can press "F" or click 4 to enter scissoring mode again, and at last if you think it should be closed, press <strong>"Ctrl"+"B", the cursor will go back to the first seed point</strong>. Then press "F", quit from the scissoring mode and you can save the cutted part.</p>
 <p>Here is a composite</p>
-<p><img width="600" src="/images/iScissor/iscissorcomposite.png"></p>
+<p><img width="600" src="images/iScissor/iscissorcomposite.png"></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

@@ -11839,8 +11839,8 @@ jQuery(document).ready(function($) {
 </header>
 
   <div class="entry-content"><p>This computer vision project is to construct a 3D model from a single image plus some prior knowledge about the objects' coordinates in the image. It's based on this <a href="https://www.cs.cmu.edu/~ph/869/papers/Criminisi99.pdf">paper</a>. You can download the code from <a href="https://github.com/ZhengRui/Single-View-Metrology">here</a>. Here is a sample 3D model (right) built from a image (left).</p>
-<p><img width="300" alt=""desk"" title=""desk"" src="/images/singleVM/desk.jpg">
-<img width="400" alt=""3Ddesk"" title=""3Ddesk"" src="/images/singleVM/desk3d.png"></p>
+<p><img width="300" alt=""desk"" title=""desk"" src="images/singleVM/desk.jpg">
+<img width="400" alt=""3Ddesk"" title=""3Ddesk"" src="images/singleVM/desk3d.png"></p>
 <p>You should first know something about concepts like <a href="https://en.wikipedia.org/wiki/Perspective_%28graphical%29">Perspective projection</a>, <a href="https://en.wikipedia.org/wiki/Pinhole_camera_model">Pinhole camera model</a>, <a href="https://en.wikipedia.org/wiki/Homogeneous_coordinates">Homogeneous coordinates</a>. A <a href="https://deltaorange.com/2012/03/08/the-truth-behind-homogenous-coordinates/">good post</a> about homogeneous coordinates, and a <a href="https://www.youtube.com/watch?v=q3turHmOWq4">good video</a> about projective geometry. Then here are some survey [<a href="https://kusemanohar.files.wordpress.com/2014/03/singleviewmetrologyfinalreport.pdf">1</a>, <a href="https://www.cs.ucf.edu/~tmoore/projects/svm/FinalReport.pdf">2</a>, <a href="https://www.mit.edu/~sysun/ComputerVision/SVM.pdf">3</a>] about svm. Check the following links to get a sense of single view metrology:</p>
 <ul>
 <li><a href="https://ihome.ust.hk/~yyuanad/SVM/index.html">Zheng Amin, Yuan Yuan</a></li>
@@ -11854,19 +11854,19 @@ jQuery(document).ready(function($) {
 <h4>vanishing point</h4>
 <p>Vanishing point is easy to understand, parallel lines in one direction will ends up on the vanishing point at infinity. Basically it needs you to manually specify two or more parallel lines (in <span class="math">\(X\)</span> direction and <span class="math">\(Y\)</span> direction) in the image and calculate their common intersection point (get <span class="math">\(X\)</span> vanishing point and <span class="math">\(Y\)</span> vanishing point respectively).</p>
 <p>Mathmatically, to calculate a common intersection point of multiple parallel lines, it involves solving an over determined equation array problem (# of equations greater than # of variables). You can use <em>Robert T Collins</em> method, this will make it transform into a non-overdetermined problem, which is very easy to solve, the basic idea is (the following picture was originally an email from Collins to Steve Seitz):</p>
-<p><img width="500" alt=""collins"" title=""collins"" src="/images/singleVM/collins.png">
-<img width="500" alt=""collins2"" title=""collins2"" src="/images/singleVM/collins2.png"></p>
+<p><img width="500" alt=""collins"" title=""collins"" src="images/singleVM/collins.png">
+<img width="500" alt=""collins2"" title=""collins2"" src="images/singleVM/collins2.png"></p>
 <p>After get the <span class="math">\(M\)</span> matrix, i recommend using <a href="https://eigen.tuxfamily.org/dox/GettingStarted.html">Eigen3</a> package to solve the eigen values problem. Also in the other part of this project, i use Eigen3 package to manipulate matrix operations and calculate their eigen values, incluing calculating the homography matrix and <span class="math">\(\alpha_z\)</span>.</p>
 <ul>
 <li>After load a picture, right mouse for drugging, wheel for zooming. "Edit"-"Rescale" is for scaling to the original image size.</li>
 <li>"Edit"-"XLines", then left click to choose the parallel lines in <span class="math">\(X\)</span> direction (shown with read endpoints and lines).</li>
 </ul>
-<p><img width="400" alt=""x parallel lines"" title=""x parallel lines"" src="/images/singleVM/xlines.png"></p>
+<p><img width="400" alt=""x parallel lines"" title=""x parallel lines"" src="images/singleVM/xlines.png"></p>
 <p><strong><em>"Alt+d" to delete previous choosen point, "Ctrl+LeftClick" to choose one of the previous points which is under the cursor.</em></strong></p>
 <ul>
 <li>"Calculation"-"XVPoint", calculate the x vanishing point, output:</li>
 </ul>
-<!-- {% img /images/singleVM/xvp.png 400 "x vanishing point" %} -->
+<!-- {% img images/singleVM/xvp.png 400 "x vanishing point" %} -->
 
 <pre>
 Please pick up endpoints of lines pointing in X direction
@@ -11893,8 +11893,8 @@ Vanishing point position: (3841.3, -1287.98)
 <ul>
 <li>Repeat the same step to get the y vanishing point (green endpoints and lines).</li>
 </ul>
-<p><img width="400" alt=""y parallel lines"" title=""y parallel lines"" src="/images/singleVM/ylines.png">
-<!-- <img width="400" alt=""y vanishing point"" title=""y vanishing point"" src="/images/singleVM/yvp.png"> --></p>
+<p><img width="400" alt=""y parallel lines"" title=""y parallel lines"" src="images/singleVM/ylines.png">
+<!-- <img width="400" alt=""y vanishing point"" title=""y vanishing point"" src="images/singleVM/yvp.png"> --></p>
 <pre>
 Please pick up endpoints of lines pointing in Y direction
 
@@ -11932,11 +11932,11 @@ It involves LU decomposition which can be calculated using Eigen3 (I have tried 
 <ul>
 <li>"Edit"-"RPlane", choose a point in the image (black point) and specify its 3D coordinate, don't forget to use "Ctrl+LeftClick" to choose existed points and "Alt+d" to undo</li>
 </ul>
-<p><img width="400" alt=""coordinate pair"" title=""coordinate pair"" src="/images/singleVM/homopair.png"></p>
+<p><img width="400" alt=""coordinate pair"" title=""coordinate pair"" src="images/singleVM/homopair.png"></p>
 <ul>
 <li>"Calculation"-"Homography", calculate the homography matrix, it will ask you whether you wanna use <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> vanishing points or not (if they are already calculated in previous step), you can choose based on your requirement</li>
 </ul>
-<p><img width="400" alt=""calculate homograph matrix"" title=""calculate homograph matrix"" src="/images/singleVM/homo.png"></p>
+<p><img width="400" alt=""calculate homograph matrix"" title=""calculate homograph matrix"" src="images/singleVM/homo.png"></p>
 <p>sample output (i choosed using the vanishing point here):</p>
 <pre>
 Please specify 4 or more points on Z=0 plane (including vanishing points on this plane's vanishing line if they can be calculated and will be taken into account) and make sure these points could form a polygon
@@ -12100,11 +12100,11 @@ Please specify 4 or more points on Z=0 plane (including vanishing points on this
 <p><em>Note: HomoMat here is the inverse of <span class="math">\(H\)</span></em> </p>
 <h4><span class="math">\(\alpha_z\)</span></h4>
 <p>To calculate <span class="math">\(\alpha_z\)</span> is to determine the third column in <span class="math">\(P\)</span>, you need to first calculate the <span class="math">\(Z\)</span> vanishing point, and then sepecify 2 extra coordinatepairs which are colinear with <span class="math">\(Z\)</span> vanishing point (which means they have the same <span class="math">\(X\)</span> and <span class="math">\(Y\)</span> coordinates, and think of how to calculate <span class="math">\(H\)</span> with the 3rd method). The following is the derivation for calculation of <span class="math">\(\alpha_z\)</span> (which is <span class="math">\(\gamma\)</span>) from two scene points <span class="math">\((X,Y,Z)\)</span> and <span class="math">\((X,Y,Z+\delta Z)\)</span>, i use the notation which should be the same as those derivation in the materials i mentioned above, but here the two points <span class="math">\(b\)</span> and <span class="math">\(t\)</span> can be both off plane.</p>
-<p><img width="400" alt=""derivation of alpha_z"" title=""derivation of alpha_z"" src="/images/singleVM/SVMderivation.png"></p>
+<p><img width="400" alt=""derivation of alpha_z"" title=""derivation of alpha_z"" src="images/singleVM/SVMderivation.png"></p>
 <ul>
 <li>"Edit"-"Zlines" to choose z parallel lines, then "Calculation"-"ZVpoint" to calculate <span class="math">\(Z\)</span> vanishing point (blue lines and endpoints)</li>
 </ul>
-<p><img width="400" alt=""z parallel lines"" title=""z parallel lines"" src="/images/singleVM/zlines.png"></p>
+<p><img width="400" alt=""z parallel lines"" title=""z parallel lines"" src="images/singleVM/zlines.png"></p>
 <pre>
 Please pick up endpoints of lines pointing in Z direction
 
@@ -12130,11 +12130,11 @@ Vanishing point position: (379.211, 3496.5)
 <ul>
 <li>"Edit"-"RPlane" to specify 2 offplane scene points, the thin white line is connected to the <span class="math">\(Z\)</span> vanishing point</li>
 </ul>
-<p><img width="400" alt=""offplane point1"" title=""offplane point1"" src="/images/singleVM/zoffplane.png"></p>
+<p><img width="400" alt=""offplane point1"" title=""offplane point1"" src="images/singleVM/zoffplane.png"></p>
 <ul>
 <li>After specify the first scene point's coordinate, there will be a projected point on <span class="math">\(Z=0\)</span> plane and you can either choose that point as the second point or choose another off plane point if you like. Don't forget "Ctrl+LeftClick" and "Alt+d" if needed.</li>
 </ul>
-<p><img width="400" alt=""offplane point2"" title=""offplane point2"" src="/images/singleVM/zoffplane2.png"></p>
+<p><img width="400" alt=""offplane point2"" title=""offplane point2"" src="images/singleVM/zoffplane2.png"></p>
 <ul>
 <li>"Calculation"-"Alpha" to calculate <span class="math">\(\alpha_z\)</span></li>
 </ul>
@@ -12184,9 +12184,9 @@ Vanishing point position: (379.211, 3496.5)
 <ul>
 <li>After calculate <span class="math">\(Z\)</span> vanishing point and <span class="math">\(\alpha_z\)</span>, we actually get the projection matrix <span class="math">\(P\)</span>, we can test it by "Calculation"-"Scene2Image", input the 3D scene coordinate,</li>
 </ul>
-<p><img width="400" alt=""scene to image"" title=""scene to image"" src="/images/singleVM/scene2img.png"></p>
+<p><img width="400" alt=""scene to image"" title=""scene to image"" src="images/singleVM/scene2img.png"></p>
 <p>it then shows the corresponding point in the image:</p>
-<p><img width="400" alt=""scene to image result"" title=""scene to image result"" src="/images/singleVM/scene2imgres.png"></p>
+<p><img width="400" alt=""scene to image result"" title=""scene to image result"" src="images/singleVM/scene2imgres.png"></p>
 <h3>How to generate texture patches and build 3D model (vrml file)</h3>
 <p>First you need to enter "Edit"-"PtPool" state, pick many points of interest in the image and using the later mentioned co-plane or co-z methods to get their 3D scene coordinates, this step will save all the points of interest in a pool, then enter "Edit"-"Polygon" state and choose points from the pool to form a polygon and use "Calculation"-"Texture" or ("Alt+p") to calculate the patches of this polygon, there are also bounding-box method or polygon method to calculate the patches. You can use "Alt+s" to switch between co-plane and co-z method if you are in "PtPool" state, or switch between bounding-box and polygon method if you are in "Polygon" (making patches using points in pool) state.</p>
 <p>Something to clarify:</p>
@@ -12197,7 +12197,7 @@ Vanishing point position: (379.211, 3496.5)
 </ol>
 <p>Start from a point in <span class="math">\(Z=0\)</span> plane, default is co-plane method, then select points of interest on this plane, when you want to jump to another <span class="math">\(Z=z\)</span> plane, first "Alt+s" to switch the mode, then select the projected point on the new plane (with help of the thin white line), after selection of the first point on the new plane, the method will be automatically switched back to co-plane method. Repeat this process untill you select all the points of interest. Dont forget the usage of "Alt+d" and "Ctrl+LeftClick" when needed. Also you can press "=" to enlarge the gap on the white line, or press "-" to make it smaller.</p>
 <p><div class="videobox">
-            <video width="240" height="180" preload="none" controls poster="/images/singleVM/ptpool.png"><source src='/videos/singleVM/ptpool.ogv' type='video/ogg; codecs=theora, vorbis'></video></div></p>
+            <video width="240" height="180" preload="none" controls poster="images/singleVM/ptpool.png"><source src='videos/singleVM/ptpool.ogv' type='video/ogg; codecs=theora, vorbis'></video></div></p>
 <p>output:
 <pre>
 Please pick up all the points which will be used to form polygons later, start from one point in the reference plane. 
@@ -12232,7 +12232,7 @@ Scene Coordinates: (0.186364, 1.23369, -1.00038)
 <p>How to get the RGB value of a point inside the polygon or boundingbox, i will first rotate it from <span class="math">\(XY\)</span> plane to 3D scene position, then use projection matrix <span class="math">\(P\)</span> to find its scene pixel, then use <a href="https://en.wikipedia.org/wiki/Bilinear_interpolation">Bilinear Interpolation</a> method to get its RGB value.</p>
 <p>This video show we first use bounding box method to create a rectangle patch for 3 selected points, then "Alt+s" switch to polygon method and get a triangular patch from 3 points, next we show how to create a more complex polygon patch (when using polygon method, the points should be selected on clock-wise or counter clock-wise order). Also you can pick some points which are some tilted plane, it doesn't have to be horizontal or vertical plane.  </p>
 <p><div class="videobox">
-            <video width="240" height="180" preload="none" controls poster="/images/singleVM/patch.png"><source src='/videos/singleVM/patch.ogv' type='video/ogg; codecs=theora, vorbis'></video></div></p>
+            <video width="240" height="180" preload="none" controls poster="images/singleVM/patch.png"><source src='videos/singleVM/patch.ogv' type='video/ogg; codecs=theora, vorbis'></video></div></p>
 <p>output:</p>
 <pre>
 Please select at least 3 points for each plane and make patch by press "Alt + P" or click "Texture" in "Calculation" menu, you can change TextureMethod (BoundingBox method or Polygon method) with "Alt + S", default: BoundingBox method
@@ -12261,7 +12261,7 @@ Please select at least 3 points for each plane and make patch by press "Alt + P"
 <p><strong><em> When making point pools and generating patches, it's better to use incremental methods, which means add some points to the pool, then generate some patches using the newly add points, then add some other points to the pool and generate other patches. It's important to check at each time whether the scene coordinates of newly add points are acceptable, especially when you are jumping to another plane, because if there are some errors at some point, it will leads to incrementally larger error for the later added points. Basically, in this process, we have to be very careful and patient and make sure different paths to some point is consistent in an acceptable level. </em></strong></p>
 <h3>Paint Sample</h3>
 <p>For irregular object as the man and lion in this paint sample, when generating patches, you can first pick a rectangle which is big enough to hold the object, then use the <a href="iscissor.html">intelligent scissor tool</a> to pick out the object from old patch and use the picked out image as new patch.</p>
-<p><img width="500" alt=""paint vrml model"" title=""paint vrml model"" src="/images/singleVM/paintwrl.png"></p>
+<p><img width="500" alt=""paint vrml model"" title=""paint vrml model"" src="images/singleVM/paintwrl.png"></p>
 <p>All the original pictures, generated patches and vrml models can be downloaded from <a href="https://www.dropbox.com/s/04rv40bp68ieovm/TestSVMModels.zip">here</a>. </p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
